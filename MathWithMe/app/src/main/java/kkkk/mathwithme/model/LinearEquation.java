@@ -12,13 +12,13 @@ import java.util.Random;
 public class LinearEquation implements Exercise {
 
     public static void main(String[] args) {
-        Exercise le = new LinearEquation(3, 1);
+        Exercise le = new LinearEquation(1);
         System.out.println(Arrays.toString(le.getParameters()));
         System.out.println(Arrays.toString(le.getSolutions()));
-        Exercise le2 = new LinearEquation(3, 1);
+        Exercise le2 = new LinearEquation(2);
         System.out.println(Arrays.toString(le2.getParameters()));
         System.out.println(Arrays.toString(le2.getSolutions()));
-        Exercise le3 = new LinearEquation(3, 1);
+        Exercise le3 = new LinearEquation(3);
         System.out.println(Arrays.toString(le3.getParameters()));
         System.out.println(Arrays.toString(le3.getSolutions()));
     }
@@ -35,10 +35,10 @@ public class LinearEquation implements Exercise {
     private int h;
     private int i;
 
-    private double[] solutions;
+    private int[] solutions;
 
-    protected LinearEquation(int seed, int level) {
-        parametersGenerator = new Random(seed);
+    protected LinearEquation(int level) {
+        parametersGenerator = new Random();
 
         a = sign() * parametersGenerator.nextInt(31);
         b = sign() * parametersGenerator.nextInt(31);
@@ -62,21 +62,27 @@ public class LinearEquation implements Exercise {
             f = sign() * parametersGenerator.nextInt(31);
         }
         g = sign() * parametersGenerator.nextInt(31);
-        h = sign() * parametersGenerator.nextInt(31);
         i = sign() * parametersGenerator.nextInt(31);
 
-        solutions = new double[]{(e * g + h - a * c - d * i) / (a * b + d - e * f)};
+        h = -(parametersGenerator.nextInt(4) * (a * b + d - e * f) + (e * g - a * c - d * i) % (a * b + d - e * f));
+
+        solutions = new int[]{(e * g + h - a * c - d * i) / (a * b + d - e * f)};
     }
 
+
     private static int sign() {
-        return new Random().nextInt(2) - 1;
+        switch (new Random().nextInt(2)) {
+            case 0: return 1;
+            case 1: return -1;
+            default: return 0;
+        }
     }
 
     public int[] getParameters() {
-        return new int[]{a, b, c, d, e, f, g, h};
+        return new int[]{a, b, c, d, i, e, f, g, h};
     }
 
-    public double[] getSolutions() {
+    public int[] getSolutions() {
         return solutions;
     }
 }

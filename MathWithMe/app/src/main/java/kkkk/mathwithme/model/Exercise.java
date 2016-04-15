@@ -6,6 +6,6 @@ package kkkk.mathwithme.model;
 public interface Exercise {
 
     public int[] getParameters();
-    public double[] getSolutions();
+    public int[] getSolutions();
 
 }

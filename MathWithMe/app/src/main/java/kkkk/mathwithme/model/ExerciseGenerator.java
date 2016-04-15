@@ -1,18 +1,37 @@
 package kkkk.mathwithme.model;
 
+import java.util.Map;
+
 /**
  * Created by DAKY on 15/04/2016.
  */
 public class ExerciseGenerator {
 
-    protected static Exercise generatorExercise(int seed, int equationType, int level) {
+    private final int seed;
+    private final int equationType;
+    private final int level;
+
+    private Map<Integer, Exercise> exercisesDict;
+
+    public ExerciseGenerator(int seed, int equationType, int level) {
+        this.seed = seed;
+        this.level = level;
+        this.equationType = equationType;
+    }
+
+    public Exercise generatorExercise() {
+        if (exercisesDict.containsKey(seed))
+            return exercisesDict.get(seed);
+        Exercise exercise = null;
         switch(equationType) {
             case 1:
-                return new LinearEquation(seed, level);
+                exercise = new LinearEquation(level);
+                exercisesDict.put(seed, exercise);
             case 2:
-                return new QuadraticEquation(seed, level);
+                exercise = new QuadraticEquation(level);
+                exercisesDict.put(seed, exercise);
         }
-        return null;
+        return exercise;
     }
 
 }

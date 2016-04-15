@@ -18,10 +18,10 @@ public class QuadraticEquation implements Exercise {
     private int b;
     private int c;
 
-    private double[] solutions;
+    private int[] solutions;
 
-    protected QuadraticEquation(int seed, int level) {
-        parametersGenerator = new Random(seed);
+    protected QuadraticEquation(int level) {
+        parametersGenerator = new Random();
 
         int A, B, C, D;
         B = sign() * parametersGenerator.nextInt(31);
@@ -45,12 +45,11 @@ public class QuadraticEquation implements Exercise {
                 C = 1;
         }
 
-
         a = A*C;
         b = D*A + B*C;
         c = B * D;
 
-        solutions = new double[]{-B/A, -D/C};
+        solutions = new int[]{-B/A, -D/C};
     }
 
     private static int divisor(int num) {
@@ -62,14 +61,18 @@ public class QuadraticEquation implements Exercise {
     }
 
     private static int sign() {
-        return new Random().nextInt(2) - 1;
+        switch (new Random().nextInt(2)) {
+            case 0: return 1;
+            case 1: return -1;
+            default: return 0;
+        }
     }
 
     public int[] getParameters() {
         return new int[]{a, b, c};
     }
 
-    public double[] getSolutions() {
+    public int[] getSolutions() {
         return solutions;
     }
 }
