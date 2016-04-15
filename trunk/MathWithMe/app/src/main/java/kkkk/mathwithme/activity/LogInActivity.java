@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.concurrent.Callable;
+
 import kkkk.mathwithme.R;
+import kkkk.mathwithme.model.server.CallableWithParameter;
+import kkkk.mathwithme.model.server.ServerAPI;
 
 public class LogInActivity extends Activity {
 
@@ -27,6 +32,18 @@ public class LogInActivity extends Activity {
 
         setContentView(R.layout.activity_log_in);
         signUpTextButton = (TextView) findViewById(R.id.signUpNowTextButton);
+        ServerAPI serverAPI = new ServerAPI(this);
+        serverAPI.getAllRooms(new CallableWithParameter<List<ServerAPI.Room>, Void>() {
+            @Override
+            public Void call(List<ServerAPI.Room> parameter) {
+                return null;
+            }
+        }, new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                return null;
+            }
+        });
         signUpTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
