@@ -220,6 +220,7 @@
     <string name="email">email</string>
     <string name="log_in">Log In</string>
     <string name="password">password</string>
+    <string name="quadratic_equation">Quadratic Equation</string>
     <string name="repeat_password">repeat password</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_now">Sign Up Now</string>

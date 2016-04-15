@@ -18,7 +18,7 @@ public class LogInActivity extends Activity {
         super.onCreate(savedInstanceState);
         id = idFromHistory();
 
-        if (id != 0) {
+        if (id == 0) {
             finish();
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);
