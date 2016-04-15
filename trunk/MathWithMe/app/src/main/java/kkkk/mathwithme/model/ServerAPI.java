@@ -62,4 +62,38 @@ public class ServerAPI {
         };
         requestQueue.add(stringRequest);
     }
+
+    public void signIn(final String username, final String password, final StringBuilder idStringToFill,
+                       final Callable<Void> actionWhenDone, final Callable<Void> actionIfFail) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signin",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        idStringToFill.append(response);
+                        try {
+                            actionWhenDone.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    actionIfFail.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> mParams = new HashMap<>();
+                mParams.put("username", username);
+                mParams.put("password", password);
+                return mParams;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
 }
