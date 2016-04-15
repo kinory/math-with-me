@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import kkkk.mathwithme.R;
+import kkkk.mathwithme.model.LocalDatabaseAPI;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -24,6 +26,11 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         setContentView(R.layout.activity_menu);
+
+        LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
+
+        TextView welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
+        welcomeTextView.setText("Welcome " + databaseAPI.detailsFromHistory()[1] + "!");
 
         LinearLayout menuLinearLayout = (LinearLayout) findViewById(R.id.menuLinearLayout);
 

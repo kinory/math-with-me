@@ -20,7 +20,8 @@
             android:layout_marginLeft="10dp"
             android:textSize="30sp"
             android:textColor="@color/colorForegroundDark"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/welcomeTextView" />
 
     </LinearLayout>
 
@@ -43,7 +44,7 @@
             <FrameLayout
                 android:layout_width="250sp"
                 android:layout_height="match_parent"
-                android:background="@color/colorAccent"
+                android:background="@color/colorForeground"
                 android:layout_gravity="left|center_vertical"
                 android:clickable="true">
 
@@ -94,7 +95,7 @@
             <FrameLayout
                 android:layout_width="250sp"
                 android:layout_height="match_parent"
-                android:background="@color/colorAccent"
+                android:background="@color/colorForeground"
                 android:layout_gravity="right|center_vertical"
                 android:clickable="true">
 

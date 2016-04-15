@@ -8,13 +8,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/colorBackground"
-    tools:context="kkkk.mathwithme.activity.LogInActivity">
+    tools:context=".activity.LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_in"
-        android:id="@+id/logInTextView"
+        android:id="@+id/loginTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
@@ -23,7 +23,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/userNameEditTect"
+        android:id="@+id/usernameEditText"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_in"
-        android:id="@+id/logInTextButton"
+        android:id="@+id/loginTextButton"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
@@ -73,9 +73,19 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@+id/logInTextButton"
+        android:layout_below="@+id/loginTextButton"
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:layout_marginTop="20sp"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:foregroundTint="@color/colorPrimary"
+        android:layout_above="@+id/passwordEditText"
+        android:layout_below="@+id/usernameEditText"
+        android:layout_alignEnd="@+id/loginTextButton"
+        android:visibility="gone"/>
 
 </RelativeLayout>
