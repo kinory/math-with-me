@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="kkkk.mathwithme.activity.SignUpActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:id="@id/signUpTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userNameEditTect"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="@string/user_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passwordEditText"
+        android:hint="@string/password"
+        android:textSize="20sp"
+        android:layout_below="@+id/userNameEditTect"
+        android:layout_alignLeft="@+id/userNameEditTect"
+        android:layout_alignStart="@+id/userNameEditTect"
+        android:layout_alignRight="@+id/userNameEditTect"
+        android:layout_alignEnd="@+id/userNameEditTect"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:id="@+id/logInButton"
+        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/colorForegroundDark"
+        android:layout_below="@+id/emailEditText"
+        android:layout_alignLeft="@id/signUpTextView"
+        android:layout_alignStart="@id/signUpTextView"
+        android:layout_marginTop="40sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailEditText"
+        android:hint="@string/email"
+        android:textSize="20sp"
+        android:layout_below="@+id/repeatPasswordEditText"
+        android:layout_alignLeft="@+id/repeatPasswordEditText"
+        android:layout_alignStart="@+id/repeatPasswordEditText"
+        android:layout_alignRight="@+id/repeatPasswordEditText"
+        android:layout_alignEnd="@+id/repeatPasswordEditText"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repeatPasswordEditText"
+        android:hint="@string/repeat_password"
+        android:textSize="20sp"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_alignLeft="@+id/passwordEditText"
+        android:layout_alignStart="@+id/passwordEditText"
+        android:layout_alignRight="@+id/passwordEditText"
+        android:layout_alignEnd="@+id/passwordEditText"
+        android:inputType="textPassword" />
+</RelativeLayout>
