@@ -5,6 +5,7 @@ package kkkk.mathwithme.model;
  */
 public interface Exercise {
 
+    public Class<? extends Exercise> getType();
     public int[] getParameters();
     public int[] getSolutions();
 

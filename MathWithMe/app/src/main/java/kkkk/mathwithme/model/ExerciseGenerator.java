@@ -19,7 +19,7 @@ public class ExerciseGenerator {
         this.equationType = equationType;
     }
 
-    public Exercise generatorExercise() {
+    public Exercise generateExercise() {
         if (exercisesDict.containsKey(seed))
             return exercisesDict.get(seed);
         Exercise exercise = null;
