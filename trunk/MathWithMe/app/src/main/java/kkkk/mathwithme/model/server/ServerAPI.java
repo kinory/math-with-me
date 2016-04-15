@@ -8,16 +8,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -100,19 +101,17 @@ public class ServerAPI {
 
     public void getAllRooms(final CallableWithParameter<List<Room>, Void> actionWhenDone,
                             final Callable<Void> actionIfFail) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
-                SERVER_URL + "/getallrooms", null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                SERVER_URL + "/getallrooms", null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
-                ArrayList<Room> roomArrayList = new ArrayList<>();
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        roomArrayList.add(new Room(response.getString(i)));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            public void onResponse(JSONObject response) {
+                ArrayList<Room> roomObjectList = new ArrayList<>();
+                Iterator<String> iterator = response.keys();
+                for (String key = ""; iterator.hasNext(); key = iterator.next()) {
+                    System.out.println(key);
+                    roomObjectList.add(new Room(response.toString()));
                 }
-                actionWhenDone.call(roomArrayList);
+                actionWhenDone.call(roomObjectList);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -129,27 +128,51 @@ public class ServerAPI {
                 return super.getParams();
             }
         };
+
+        requestQueue.add(jsonObjectRequest);
     }
 
     public static class Room {
         private int level;
-        private int id;
+        private String id;
+        private int seed;
+        private int usersConnected;
 
-        public Room(int level, int id) {
+        private Room(int level, String id, int seed, int usersConnected) {
             this.level = level;
             this.id = id;
+            this.seed = seed;
+            this.usersConnected = usersConnected;
         }
 
         public Room(String jsonString) {
-            Log.d("JSON PARSE", "Room: " + jsonString);
+            Log.e("JSON PARSE", "Room: " + jsonString);
+            jsonString = jsonString.substring(3,jsonString.length() - 2);
+            String[] array = jsonString.split("\\,");
+            for (int i = 0; i < array.length; i++) {
+                array[i] = array[i].split("\\:")[1];
+            }
+            String id = array[0];
+            String level = array[1];
+            String userCount = array[2];
+            String seed = array[3];
+            System.out.println(id + level + userCount + seed);
         }
 
         public int getLevel() {
             return level;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
+        }
+
+        public int getSeed() {
+            return seed;
+        }
+
+        public int getUsersConnected() {
+            return usersConnected;
         }
     }
 }
