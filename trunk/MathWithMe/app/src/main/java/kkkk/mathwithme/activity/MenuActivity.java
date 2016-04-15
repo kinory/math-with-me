@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
         LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
 
         TextView welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
-        welcomeTextView.setText("Welcome " + databaseAPI.detailsFromHistory()[1] + "!");
+        welcomeTextView.setText("Welcome " + databaseAPI.getUsername() + "!");
 
         LinearLayout menuLinearLayout = (LinearLayout) findViewById(R.id.menuLinearLayout);
 

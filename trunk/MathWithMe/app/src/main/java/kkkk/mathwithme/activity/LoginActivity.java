@@ -34,7 +34,7 @@ public class LoginActivity extends Activity {
 
         databaseAPI = new LocalDatabaseAPI(this);
 
-        id = databaseAPI.detailsFromHistory()[0];
+        id = databaseAPI.getId();
 
         if (id != null) {
             finish();
@@ -64,7 +64,8 @@ public class LoginActivity extends Activity {
                             @Override
                             public Void call(String parameter) {
                                 progressBar.setVisibility(View.GONE);
-                                databaseAPI.detailsToHistory(parameter, username);
+                                databaseAPI.setId(parameter);
+                                databaseAPI.setUsername(username);
                                 finish();
                                 Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                 startActivity(intent);
