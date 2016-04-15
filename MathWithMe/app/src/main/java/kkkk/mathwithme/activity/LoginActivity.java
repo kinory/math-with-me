@@ -51,6 +51,35 @@ public class LoginActivity extends Activity {
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
+        //Delete
+        ServerAPI serverAPI = new ServerAPI(this);
+        serverAPI.sendMessage("571146ab344664d6004310d2", "Hi", new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                return null;
+            }
+        }, new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                return null;
+            }
+        });
+        serverAPI.getUserById("571146ab344664d6004310d2", new CallableWithParameter<ServerAPI.UserWithoutRoom, Void>() {
+            @Override
+            public Void call(ServerAPI.UserWithoutRoom parameter) {
+                System.out.println("Points" + parameter.getPoints() + " Email"
+                        + parameter.getEmail() + " Username" + parameter.getUsername()
+                        + " Id" + parameter.getId());
+                return null;
+            }
+        }, new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                return null;
+            }
+        });
+        //Delete
+
         loginTextButton = (TextView) findViewById(R.id.loginTextButton);
         loginTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,18 +115,6 @@ public class LoginActivity extends Activity {
         });
 
         signUpTextButton = (TextView) findViewById(R.id.signUpNowTextButton);
-        ServerAPI serverAPI = new ServerAPI(this);
-        serverAPI.getAllRooms(new CallableWithParameter<List<ServerAPI.Room>, Void>() {
-            @Override
-            public Void call(List<ServerAPI.Room> parameter) {
-                return null;
-            }
-        }, new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                return null;
-            }
-        });
         signUpTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

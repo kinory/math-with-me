@@ -3,9 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kkkk.mathwithme.activity.RoomActivity"></RelativeLayout>
+    tools:context="kkkk.mathwithme.activity.RoomActivity">
 
+    <io.github.kexanie.library.MathView
+        android:id="@+id/formula_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        auto:text="When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\)
+        and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
+        auto:engine="MathJax"
+        >
+    </io.github.kexanie.library.MathView>
+
+</RelativeLayout>

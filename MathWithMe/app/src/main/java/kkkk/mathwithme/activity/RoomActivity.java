@@ -16,17 +16,6 @@ public class RoomActivity extends AppCompatActivity {
 
     TextView exerciseTextView;
 
-    protected void drawXSquared(int )
-
-    protected void drawEquation(int equationType, int[] params) {
-        switch (equationType) {
-            case 1:
-                break;
-            case 2:
-                break;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
