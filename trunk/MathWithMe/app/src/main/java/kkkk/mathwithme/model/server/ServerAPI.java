@@ -1,4 +1,4 @@
-package kkkk.mathwithme.model;
+package kkkk.mathwithme.model.server;
 
 import android.content.Context;
 
@@ -28,18 +28,12 @@ public class ServerAPI {
     }
 
     public void signUp(final String username, final String password, final String email,
-                       final StringBuilder idStringToFill, final Callable<Void> actionWhenDone,
-                       final Callable<Void> actionIfFail) {
+                       final CallableWithParameter<String, Void> actionWhenDone, final Callable<Void> actionIfFail) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signup",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        idStringToFill.append(response);
-                        try {
-                            actionWhenDone.call();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        actionWhenDone.call(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -51,6 +45,8 @@ public class ServerAPI {
                 }
             }
         }) {
+
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> mParams = new HashMap<>();
@@ -63,18 +59,14 @@ public class ServerAPI {
         requestQueue.add(stringRequest);
     }
 
-    public void signIn(final String username, final String password, final StringBuilder idStringToFill,
-                       final Callable<Void> actionWhenDone, final Callable<Void> actionIfFail) {
+    public void signIn(final String username, final String password,
+                       final CallableWithParameter<String, Void> actionWhenDone,
+                       final Callable<Void> actionIfFail) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signin",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        idStringToFill.append(response);
-                        try {
-                            actionWhenDone.call();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        actionWhenDone.call(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -95,5 +87,9 @@ public class ServerAPI {
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    public void getAllRooms() {
+
     }
 }
