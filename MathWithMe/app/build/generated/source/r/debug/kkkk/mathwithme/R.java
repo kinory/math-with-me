@@ -1807,7 +1807,7 @@ containing a value of this type.
         public static final int sign_up=0x7f06001b;
         public static final int sign_up_now=0x7f06001c;
         public static final int status_bar_notification_info_overflow=0x7f060013;
-        public static final int user_name=0x7f06001d;
+        public static final int username =0x7f06001d;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f090086;

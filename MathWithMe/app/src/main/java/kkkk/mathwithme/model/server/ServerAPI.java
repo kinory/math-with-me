@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -28,7 +29,8 @@ public class ServerAPI {
     }
 
     public void signUp(final String username, final String password, final String email,
-                       final CallableWithParameter<String, Void> actionWhenDone, final Callable<Void> actionIfFail) {
+                       final CallableWithParameter<String, Void> actionWhenDone,
+                       final Callable<Void> actionIfFail) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signup",
                 new Response.Listener<String>() {
                     @Override
@@ -89,7 +91,13 @@ public class ServerAPI {
         requestQueue.add(stringRequest);
     }
 
-    public void getAllRooms() {
+    public void getAllRooms(CallableWithParameter<List<Room>, Void> actionWhenDone,
+                            Callable<Void> actionIfFail) {
 
+    }
+
+    private static class Room {
+        private int level;
+        private int id;
     }
 }
