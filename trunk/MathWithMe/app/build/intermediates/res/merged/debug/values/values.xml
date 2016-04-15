@@ -30,8 +30,9 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <color name="colorAccent">#F79F1B</color>
+    <color name="colorAccent">#108091</color>
     <color name="colorBackground">#F5BC5B</color>
+    <color name="colorForeground">#F79F1B</color>
     <color name="colorForegroundDark">#084d58</color>
     <color name="colorPrimary">#19A6C2</color>
     <color name="colorPrimaryDark">#108091</color>
@@ -220,13 +221,15 @@
     <string name="choose_difficulty_text">Choose difficulty</string>
     <string name="email">email</string>
     <string name="log_in">Log In</string>
+    <string name="login_error_message">Login failed, Please try again</string>
     <string name="password">password</string>
+    <string name="preference_file_key">kkkk.mathwithme.PREFERENCE_FILE_KEY</string>
     <string name="quadratic_equation">Quadratic Equation</string>
     <string name="repeat_password">repeat password</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_now">Sign Up Now</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="user_name">user name</string>
+    <string name="username">username</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
