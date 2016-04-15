@@ -18,12 +18,12 @@ public class LogInActivity extends Activity {
         super.onCreate(savedInstanceState);
         id = idFromHistory();
 
-        if (id == 0) {
-            finish();
-            Intent intent = new Intent(this, MenuActivity.class);
-            startActivity(intent);
-            return;
-        }
+//        if (id != 0) {
+//            finish();
+//            Intent intent = new Intent(this, MenuActivity.class);
+//            startActivity(intent);
+//            return;
+//        }
 
         setContentView(R.layout.activity_log_in);
         signUpTextButton = (TextView) findViewById(R.id.signUpNowTextButton);
