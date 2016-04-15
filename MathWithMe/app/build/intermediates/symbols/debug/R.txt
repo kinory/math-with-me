@@ -474,9 +474,10 @@ int drawable abc_textfield_search_default_mtrl_alpha 0x7f020049
 int drawable abc_textfield_search_material 0x7f02004a
 int drawable above_shadow 0x7f02004b
 int drawable below_shadow 0x7f02004c
-int drawable circle_button 0x7f02004d
-int drawable notification_template_icon_bg 0x7f02004f
-int drawable social_send_now 0x7f02004e
+int drawable calculator 0x7f02004d
+int drawable circle_button 0x7f02004e
+int drawable notification_template_icon_bg 0x7f020050
+int drawable social_send_now 0x7f02004f
 int id KaTeX 0x7f0c001e
 int id MathJax 0x7f0c001f
 int id action0 0x7f0c0075
