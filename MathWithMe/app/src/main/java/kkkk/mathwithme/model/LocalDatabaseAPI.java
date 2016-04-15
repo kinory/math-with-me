@@ -16,19 +16,29 @@ public class LocalDatabaseAPI {
 
     private Context context;
 
+    private SharedPreferences sharedPreferences;
+
     public LocalDatabaseAPI(Context context) {
         this.context = context;
+        sharedPreferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
     }
 
-    public String[] detailsFromHistory() {
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        return new String[]{preferences.getString(ID_KEY, null), preferences.getString(USERNAME_KEY, null)};
+    public String getId() {
+        return sharedPreferences.getString(ID_KEY, null);
     }
 
-    public void detailsToHistory(String id, String username) {
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+    public String getUsername() {
+        return sharedPreferences.getString(USERNAME_KEY, null);
+    }
+
+    public void setId(String id) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ID_KEY, id);
+        editor.apply();
+    }
+
+    public void setUsername(String username) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USERNAME_KEY, username);
         editor.apply();
     }
