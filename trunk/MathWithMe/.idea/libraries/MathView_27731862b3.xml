@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="MathView-27731862b3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/jars/libs/chunk-templates-3.0.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.kexanie/MathView/27731862b3/81a9d1671b51f40990043c6642abb96683fe166f/MathView-27731862b3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

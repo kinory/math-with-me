@@ -2,60 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
-        jumboMode="true"
+        jar="C:\Users\giladkinory\Desktop\svn\MathWithMe\app\build\intermediates\exploded-aar\com.github.kexanie\MathView\27731862b3\jars\classes.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.2.1_457ee16498aa7b3ec6b6a110ccbe327c1549e116\classes.dex" />
+        sha1="1c10aa76d7a604dd11acfd18e4b26cfe1d2a926b">
+        <dex dex="C:\Users\giladkinory\Desktop\svn\MathWithMe\app\build\intermediates\pre-dexed\debug\com.github.kexanie-MathView-27731862b3_77d13ce146ca1d6bc7c2738957bc6f0ce3a51e5b.jar" />
     </item>
     <item
-        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
-        jumboMode="true"
+        jar="C:\Users\giladkinory\Desktop\svn\MathWithMe\app\build\intermediates\exploded-aar\com.github.kexanie\MathView\27731862b3\jars\libs\chunk-templates-3.0.1.jar"
+        jumboMode="false"
         revision="23.0.2"
-        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.2.1_3e4fb588ccc5090e3d7674f4d618c6c58911a463\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="673d77a5bbddd766037f088e775df525c46407f0">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.2.1_3704cecd0973e03868e3b0474185a44448d7eb31\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.2.1_f4730a5813704e800aa21cc56fd9d609c0b33ccd\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="dccd71f8d832efb4f089d14fcca08b07780bea32">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_0983e5a7f51de961cbafe0309e62a5390baf2915\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.1_ff8538d5518e8ff00ae9e741ee599cf26e594784\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="5963c8df0131e5bd05615178ec9d5b92fae44c29">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_b1b1df1ff0045941b93d6cbb8402625b63d6722c\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
-        <dex dex="C:\Users\user\Desktop\MathWithMe\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.2.1_4ff716207b86362490c06fcac63f338faaa3ce8d\classes.dex" />
+        sha1="ac60a044eb6c8a3f77498b3ffaf9ada21df4c1bf">
+        <dex dex="C:\Users\giladkinory\Desktop\svn\MathWithMe\app\build\intermediates\pre-dexed\debug\chunk-templates-3.0.1_65fdb2ccd1f42f95002140189312031884fd0679.jar" />
     </item>
 
 </items>

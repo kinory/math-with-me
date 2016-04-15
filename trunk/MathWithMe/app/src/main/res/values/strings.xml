@@ -9,6 +9,7 @@
     <string name="sign_up_now">Sign Up Now</string>
     <string name="quadratic_equation">Quadratic Equation</string>
     <string name="choose_difficulty_text">Choose difficulty</string>
-    <string name="login_error_message">Login failed, Please try again</string>
+    <string name="login_error_message">Log in failed, Please try again</string>
+    <string name="sign_up_error_message">Sign up failed, Please try again</string>
     <string name="preference_file_key">kkkk.mathwithme.PREFERENCE_FILE_KEY</string>
 </resources>

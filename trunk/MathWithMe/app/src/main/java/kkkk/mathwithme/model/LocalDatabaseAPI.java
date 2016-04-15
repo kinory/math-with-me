@@ -13,6 +13,7 @@ public class LocalDatabaseAPI {
 
     private static final String ID_KEY = "id_key";
     private static final String USERNAME_KEY = "username_key";
+    private static final String EMAIL_KEY = "email_key";
 
     private Context context;
 
@@ -31,6 +32,10 @@ public class LocalDatabaseAPI {
         return sharedPreferences.getString(USERNAME_KEY, null);
     }
 
+    public String getEmail() {
+        return sharedPreferences.getString(EMAIL_KEY, null);
+    }
+
     public void setId(String id) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(ID_KEY, id);
@@ -41,6 +46,18 @@ public class LocalDatabaseAPI {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USERNAME_KEY, username);
         editor.apply();
+    }
+
+    public void setEmail(String email) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EMAIL_KEY, email);
+        editor.apply();
+    }
+
+    public void delete() {
+        setId(null);
+        setUsername(null);
+        setEmail(null);
     }
 
 }

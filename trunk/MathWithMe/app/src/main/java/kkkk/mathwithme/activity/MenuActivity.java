@@ -2,6 +2,7 @@ package kkkk.mathwithme.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,8 +19,9 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final int NUMBER_OF_CATEGORIES = 2;
 
-    private int id;
     private ArrayList<FrameLayout> categories = new ArrayList<>();
+    private TextView profileTextButton;
+    private TextView logOutTextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         setContentView(R.layout.activity_menu);
 
-        LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
+        final LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
 
         TextView welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
         welcomeTextView.setText("Welcome " + databaseAPI.getUsername() + "!");
@@ -53,5 +55,26 @@ public class MenuActivity extends AppCompatActivity {
                 }
             });
         }
+
+        profileTextButton = (TextView) findViewById(R.id.profileTextButton);
+        profileTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logOutTextButton = (TextView) findViewById(R.id.logOutTextButton);
+        logOutTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseAPI.delete();
+                finish();
+                Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
