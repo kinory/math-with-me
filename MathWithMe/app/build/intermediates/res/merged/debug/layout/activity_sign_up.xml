@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorBackground"
     tools:context="kkkk.mathwithme.activity.SignUpActivity">
 
     <TextView
@@ -32,6 +33,7 @@
         android:hint="@string/user_name"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"/>
 
     <EditText
@@ -45,21 +47,8 @@
         android:layout_alignStart="@+id/userNameEditTect"
         android:layout_alignRight="@+id/userNameEditTect"
         android:layout_alignEnd="@+id/userNameEditTect"
+        android:textColor="@color/colorPrimaryDark"
         android:inputType="textPassword" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:id="@+id/logInButton"
-        android:background="@color/colorPrimary"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textColor="@color/colorForegroundDark"
-        android:layout_below="@+id/emailEditText"
-        android:layout_alignLeft="@id/signUpTextView"
-        android:layout_alignStart="@id/signUpTextView"
-        android:layout_marginTop="40sp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -72,6 +61,7 @@
         android:layout_alignStart="@+id/repeatPasswordEditText"
         android:layout_alignRight="@+id/repeatPasswordEditText"
         android:layout_alignEnd="@+id/repeatPasswordEditText"
+        android:textColor="@color/colorPrimaryDark"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -85,5 +75,21 @@
         android:layout_alignStart="@+id/passwordEditText"
         android:layout_alignRight="@+id/passwordEditText"
         android:layout_alignEnd="@+id/passwordEditText"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:id="@+id/signUpTextButton"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/emailEditText"
+        android:layout_alignLeft="@id/signUpTextView"
+        android:layout_alignStart="@id/signUpTextView"
+        android:layout_marginTop="40sp"
+        android:clickable="true" />
+
 </RelativeLayout>

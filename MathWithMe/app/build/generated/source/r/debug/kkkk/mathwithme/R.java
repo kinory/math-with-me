@@ -1647,7 +1647,7 @@ containing a value of this type.
         public static final int default_activity_button=0x7f0c0028;
         public static final int disableHome=0x7f0c000d;
         public static final int edit_query=0x7f0c0044;
-        public static final int emailEditText=0x7f0c0057;
+        public static final int emailEditText=0x7f0c0056;
         public static final int end=0x7f0c001b;
         public static final int end_padder=0x7f0c0065;
         public static final int expand_activities_button=0x7f0c0026;
@@ -1662,7 +1662,6 @@ containing a value of this type.
         public static final int line3=0x7f0c0062;
         public static final int listMode=0x7f0c000a;
         public static final int list_item=0x7f0c0029;
-        public static final int logInButton=0x7f0c0056;
         public static final int logInTextButton=0x7f0c0054;
         public static final int logInTextView=0x7f0c0051;
         public static final int media_actions=0x7f0c005c;
@@ -1676,7 +1675,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0c0005;
         public static final int progress_horizontal=0x7f0c0006;
         public static final int radio=0x7f0c003c;
-        public static final int repeatPasswordEditText=0x7f0c0058;
+        public static final int repeatPasswordEditText=0x7f0c0057;
         public static final int screen=0x7f0c0016;
         public static final int scrollIndicatorDown=0x7f0c0036;
         public static final int scrollIndicatorUp=0x7f0c0033;
@@ -1697,6 +1696,7 @@ containing a value of this type.
         public static final int showHome=0x7f0c0011;
         public static final int showTitle=0x7f0c0012;
         public static final int signUpNowTextButton=0x7f0c0055;
+        public static final int signUpTextButton=0x7f0c0058;
         public static final int signUpTextView=0x7f0c0007;
         public static final int spacer=0x7f0c002d;
         public static final int split_action_bar=0x7f0c0008;
