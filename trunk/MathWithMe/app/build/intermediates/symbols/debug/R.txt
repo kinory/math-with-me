@@ -484,7 +484,7 @@ int id decor_content_parent 0x7f0c0040
 int id default_activity_button 0x7f0c0028
 int id disableHome 0x7f0c000d
 int id edit_query 0x7f0c0044
-int id emailEditText 0x7f0c0057
+int id emailEditText 0x7f0c0056
 int id end 0x7f0c001b
 int id end_padder 0x7f0c0065
 int id expand_activities_button 0x7f0c0026
@@ -499,7 +499,6 @@ int id line1 0x7f0c005e
 int id line3 0x7f0c0062
 int id listMode 0x7f0c000a
 int id list_item 0x7f0c0029
-int id logInButton 0x7f0c0056
 int id logInTextButton 0x7f0c0054
 int id logInTextView 0x7f0c0051
 int id media_actions 0x7f0c005c
@@ -513,7 +512,7 @@ int id passwordEditText 0x7f0c0053
 int id progress_circular 0x7f0c0005
 int id progress_horizontal 0x7f0c0006
 int id radio 0x7f0c003c
-int id repeatPasswordEditText 0x7f0c0058
+int id repeatPasswordEditText 0x7f0c0057
 int id screen 0x7f0c0016
 int id scrollIndicatorDown 0x7f0c0036
 int id scrollIndicatorUp 0x7f0c0033
@@ -534,6 +533,7 @@ int id showCustom 0x7f0c0010
 int id showHome 0x7f0c0011
 int id showTitle 0x7f0c0012
 int id signUpNowTextButton 0x7f0c0055
+int id signUpTextButton 0x7f0c0058
 int id signUpTextView 0x7f0c0007
 int id spacer 0x7f0c002d
 int id split_action_bar 0x7f0c0008
