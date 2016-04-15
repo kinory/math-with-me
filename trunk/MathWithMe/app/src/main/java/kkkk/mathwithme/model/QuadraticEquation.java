@@ -45,9 +45,15 @@ public class QuadraticEquation implements Exercise {
                 C = 1;
         }
 
-        a = A*C;
-        b = D*A + B*C;
-        c = B * D;
+        if (level == 1) {
+            a = B*C;
+            b = B*D;
+            c = 0;
+        } else {
+            a = A*C;
+            b = D*A + B*C;
+            c = B * D;
+        }
 
         solutions = new int[]{-B/A, -D/C};
     }
