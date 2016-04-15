@@ -28,6 +28,10 @@
         <activity
             android:name=".activity.ProfileActivity"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".activity.RoomActivity"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
