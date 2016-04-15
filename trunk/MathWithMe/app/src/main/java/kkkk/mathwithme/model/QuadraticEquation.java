@@ -68,10 +68,17 @@ public class QuadraticEquation implements Exercise {
         }
     }
 
+    @Override
+    public Class<? extends Exercise> getType() {
+        return QuadraticEquation.class;
+    }
+
+    @Override
     public int[] getParameters() {
         return new int[]{a, b, c};
     }
 
+    @Override
     public int[] getSolutions() {
         return solutions;
     }

@@ -11,18 +11,6 @@ import java.util.Random;
  */
 public class LinearEquation implements Exercise {
 
-    public static void main(String[] args) {
-        Exercise le = new LinearEquation(1);
-        System.out.println(Arrays.toString(le.getParameters()));
-        System.out.println(Arrays.toString(le.getSolutions()));
-        Exercise le2 = new LinearEquation(2);
-        System.out.println(Arrays.toString(le2.getParameters()));
-        System.out.println(Arrays.toString(le2.getSolutions()));
-        Exercise le3 = new LinearEquation(3);
-        System.out.println(Arrays.toString(le3.getParameters()));
-        System.out.println(Arrays.toString(le3.getSolutions()));
-    }
-
     private Random parametersGenerator;
 
     private int a;
@@ -78,10 +66,15 @@ public class LinearEquation implements Exercise {
         }
     }
 
+    @Override
+    public Class<? extends Exercise> getType() { return QuadraticEquation.class; }
+
+    @Override
     public int[] getParameters() {
         return new int[]{a, b, c, d, i, e, f, g, h};
     }
 
+    @Override
     public int[] getSolutions() {
         return solutions;
     }
