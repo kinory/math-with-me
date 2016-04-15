@@ -107,9 +107,14 @@ public class ServerAPI {
             public void onResponse(JSONObject response) {
                 ArrayList<Room> roomObjectList = new ArrayList<>();
                 Iterator<String> iterator = response.keys();
-                for (String key = ""; iterator.hasNext(); key = iterator.next()) {
+                for (String key = ""; iterator.hasNext();) {
+                    key = iterator.next();
                     System.out.println(key);
-                    roomObjectList.add(new Room(response.toString()));
+                    try {
+                        roomObjectList.add(new Room(response.getString(key)));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 actionWhenDone.call(roomObjectList);
             }
@@ -146,17 +151,15 @@ public class ServerAPI {
         }
 
         public Room(String jsonString) {
-            Log.e("JSON PARSE", "Room: " + jsonString);
             jsonString = jsonString.substring(3,jsonString.length() - 2);
             String[] array = jsonString.split("\\,");
             for (int i = 0; i < array.length; i++) {
                 array[i] = array[i].split("\\:")[1];
             }
-            String id = array[0];
-            String level = array[1];
-            String userCount = array[2];
-            String seed = array[3];
-            System.out.println(id + level + userCount + seed);
+            id = array[0].substring(1, array[0].length() - 1);
+            level = Integer.parseInt(array[1].substring(1, array[1].length() - 1));
+            usersConnected = Integer.parseInt(array[2].substring(1, array[2].length() - 1));
+            seed = Integer.parseInt(array[3].substring(1, array[3].length() - 1));
         }
 
         public int getLevel() {
