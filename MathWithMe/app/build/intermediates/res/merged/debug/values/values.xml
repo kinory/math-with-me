@@ -217,6 +217,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="app_name">MathWithMe</string>
+    <string name="choose_difficulty_text">Choose difficulty</string>
     <string name="email">email</string>
     <string name="log_in">Log In</string>
     <string name="password">password</string>

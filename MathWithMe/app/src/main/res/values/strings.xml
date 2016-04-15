@@ -8,4 +8,5 @@
     <string name="email">email</string>
     <string name="sign_up_now">Sign Up Now</string>
     <string name="quadratic_equation">Quadratic Equation</string>
+    <string name="choose_difficulty_text">Choose difficulty</string>
 </resources>
