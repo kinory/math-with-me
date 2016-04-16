@@ -1,6 +1,5 @@
 package kkkk.mathwithme.model;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -67,7 +66,7 @@ public class LinearEquation implements Exercise {
     }
 
     @Override
-    public Class<? extends Exercise> getType() { return QuadraticEquation.class; }
+    public Class<? extends Exercise> getType() { return LinearEquation.class; }
 
     @Override
     public int[] getParameters() {

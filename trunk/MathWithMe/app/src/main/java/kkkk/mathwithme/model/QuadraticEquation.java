@@ -24,8 +24,8 @@ public class QuadraticEquation implements Exercise {
         parametersGenerator = new Random();
 
         int A, B, C, D;
-        B = sign() * parametersGenerator.nextInt(31);
-        D = sign() * parametersGenerator.nextInt(31);
+        B = sign() * (parametersGenerator.nextInt(31)+1);
+        D = sign() * (parametersGenerator.nextInt(31)+1);
 
         switch (level) {
             case 1:

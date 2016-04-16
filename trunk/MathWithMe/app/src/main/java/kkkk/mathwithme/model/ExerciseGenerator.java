@@ -16,8 +16,8 @@ public class ExerciseGenerator {
 
     public ExerciseGenerator(int seed, int equationType, int level) {
         this.seed = seed;
-        this.level = level;
         this.equationType = equationType;
+        this.level = level;
         exercisesDict = new HashMap<>();
     }
 
@@ -29,9 +29,11 @@ public class ExerciseGenerator {
             case 1:
                 exercise = new LinearEquation(level);
                 exercisesDict.put(seed, exercise);
+                break;
             case 2:
                 exercise = new QuadraticEquation(level);
                 exercisesDict.put(seed, exercise);
+                break;
         }
         return exercise;
     }
