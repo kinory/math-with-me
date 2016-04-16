@@ -1,5 +1,6 @@
 package kkkk.mathwithme.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +18,7 @@ public class ExerciseGenerator {
         this.seed = seed;
         this.level = level;
         this.equationType = equationType;
+        exercisesDict = new HashMap<>();
     }
 
     public Exercise generateExercise() {

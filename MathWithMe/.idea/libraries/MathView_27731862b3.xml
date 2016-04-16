@@ -2,8 +2,8 @@
   <library name="MathView-27731862b3">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/jars/libs/chunk-templates-3.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.kexanie/MathView/27731862b3/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
