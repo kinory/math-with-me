@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorBackground"
+    android:background="@color/colorForeground"
     tools:context="kkkk.mathwithme.activity.SignUpActivity">
 
     <TextView
@@ -17,7 +17,8 @@
         android:id="@id/signUpTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
@@ -84,7 +85,7 @@
         android:text="@string/sign_up"
         android:id="@+id/signUpTextButton"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_below="@+id/emailEditText"
         android:layout_alignLeft="@id/signUpTextView"
