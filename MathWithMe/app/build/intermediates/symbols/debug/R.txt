@@ -500,7 +500,7 @@ int id alertTitle 0x7f0c0038
 int id always 0x7f0c0020
 int id anchored 0x7f0c0025
 int id beginning 0x7f0c001b
-int id button 0x7f0c006f
+int id button 0x7f0c0071
 int id buttonPanel 0x7f0c0033
 int id cancel_action 0x7f0c007b
 int id checkbox 0x7f0c0041
@@ -513,7 +513,7 @@ int id customPanel 0x7f0c003e
 int id decor_content_parent 0x7f0c0047
 int id default_activity_button 0x7f0c002f
 int id disableHome 0x7f0c000e
-int id editText 0x7f0c006e
+int id editText 0x7f0c0070
 int id edit_query 0x7f0c004b
 int id emailEditText 0x7f0c0073
 int id emailTextView 0x7f0c006b
@@ -539,11 +539,11 @@ int id logOutTextButton 0x7f0c005f
 int id loginTextButton 0x7f0c005b
 int id loginTextView 0x7f0c0058
 int id mainLinearLayout 0x7f0c0069
-int id mathView 0x7f0c0071
+int id mathView 0x7f0c006e
 int id media_actions 0x7f0c007d
 int id menuLinearLayout 0x7f0c0061
 int id messageTextView 0x7f0c0077
-int id messagesLinearLayout 0x7f0c0070
+int id messagesLinearLayout 0x7f0c0072
 int id middle 0x7f0c001d
 int id multiply 0x7f0c0016
 int id never 0x7f0c0023
@@ -599,7 +599,7 @@ int id textView3 0x7f0c0064
 int id textView4 0x7f0c0065
 int id textView5 0x7f0c0066
 int id textView6 0x7f0c0067
-int id textView7 0x7f0c0072
+int id textView7 0x7f0c006f
 int id time 0x7f0c0080
 int id timeTextView 0x7f0c0079
 int id title 0x7f0c0032

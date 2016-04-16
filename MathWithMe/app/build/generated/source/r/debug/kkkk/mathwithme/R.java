@@ -1792,7 +1792,7 @@ containing a value of this type.
         public static final int always=0x7f0c0020;
         public static final int anchored=0x7f0c0025;
         public static final int beginning=0x7f0c001b;
-        public static final int button=0x7f0c006f;
+        public static final int button=0x7f0c0071;
         public static final int buttonPanel=0x7f0c0033;
         public static final int cancel_action=0x7f0c007b;
         public static final int checkbox=0x7f0c0041;
@@ -1805,7 +1805,7 @@ containing a value of this type.
         public static final int decor_content_parent=0x7f0c0047;
         public static final int default_activity_button=0x7f0c002f;
         public static final int disableHome=0x7f0c000e;
-        public static final int editText=0x7f0c006e;
+        public static final int editText=0x7f0c0070;
         public static final int edit_query=0x7f0c004b;
         public static final int emailEditText=0x7f0c0073;
         public static final int emailTextView=0x7f0c006b;
@@ -1831,11 +1831,11 @@ containing a value of this type.
         public static final int loginTextButton=0x7f0c005b;
         public static final int loginTextView=0x7f0c0058;
         public static final int mainLinearLayout=0x7f0c0069;
-        public static final int mathView=0x7f0c0071;
+        public static final int mathView=0x7f0c006e;
         public static final int media_actions=0x7f0c007d;
         public static final int menuLinearLayout=0x7f0c0061;
         public static final int messageTextView=0x7f0c0077;
-        public static final int messagesLinearLayout=0x7f0c0070;
+        public static final int messagesLinearLayout=0x7f0c0072;
         public static final int middle=0x7f0c001d;
         public static final int multiply=0x7f0c0016;
         public static final int never=0x7f0c0023;
@@ -1891,7 +1891,7 @@ containing a value of this type.
         public static final int textView4=0x7f0c0065;
         public static final int textView5=0x7f0c0066;
         public static final int textView6=0x7f0c0067;
-        public static final int textView7=0x7f0c0072;
+        public static final int textView7=0x7f0c006f;
         public static final int time=0x7f0c0080;
         public static final int timeTextView=0x7f0c0079;
         public static final int title=0x7f0c0032;

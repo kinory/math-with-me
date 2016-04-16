@@ -11,13 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.Callable;
 
 import kkkk.mathwithme.R;
 import kkkk.mathwithme.model.LocalDatabaseAPI;
-import kkkk.mathwithme.model.server.CallableWithParameter;
 import kkkk.mathwithme.model.server.ServerAPI;
 
 public class MenuActivity extends AppCompatActivity {
@@ -56,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    goToRoom(new ServerAPI.Room(difficulties[which] + (finalI - 1)*3, "",
+                                    goToRoom(new ServerAPI.Room(difficulties[which] + (finalI)*3, "",
                                             finalI, true));
                                 }
                             }).setNegativeButton("Cancel", null);
