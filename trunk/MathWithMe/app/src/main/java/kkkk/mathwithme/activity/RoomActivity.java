@@ -7,16 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
 
 import io.github.kexanie.library.MathView;
 import kkkk.mathwithme.R;
 import kkkk.mathwithme.model.Exercise;
 import kkkk.mathwithme.model.ExerciseGenerator;
 import kkkk.mathwithme.model.LinearEquation;
+import kkkk.mathwithme.model.LocalDatabaseAPI;
 import kkkk.mathwithme.model.QuadraticEquation;
+import kkkk.mathwithme.model.server.CallableWithParameter;
 import kkkk.mathwithme.model.server.ServerAPI;
 
 public class RoomActivity extends AppCompatActivity {
@@ -27,13 +36,24 @@ public class RoomActivity extends AppCompatActivity {
     private EditText answerEditText1;
     private EditText answerEditText2;
 
+    private ServerAPI serverAPI;
+    private LocalDatabaseAPI databaseAPI;
+
+    private long lastRequestTime = 0;
+
+    private ImageButton sendMessageButton;
+    private EditText messageEditText;
+
+    private ServerAPI.Room room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
         messagesLinearLayout = (LinearLayout) findViewById(R.id.messagesLinearLayout);
-        addMessages(null);
+
+        serverAPI = new ServerAPI(this);
+        databaseAPI = new LocalDatabaseAPI(this);
 
         answerEditText1 = (EditText) findViewById(R.id.answerTextField1);
         answerEditText2 = (EditText) findViewById(R.id.answerTextField2);
@@ -41,8 +61,9 @@ public class RoomActivity extends AppCompatActivity {
         answerEditText2.setVisibility(View.GONE);
 
         MathView mathView = (MathView) findViewById(R.id.mathView);
-        int seed = getIntent().getIntExtra("seed", 0);
-        int levelInt = getIntent().getIntExtra("level", 1);
+        room = (ServerAPI.Room) getIntent().getSerializableExtra("room");
+        int seed = room.getSeed();
+        int levelInt = room.getLevel();
         int type = (int) Math.ceil(levelInt / 3.0);
         int level = (levelInt % 3) == 0 ? 3 : (levelInt % 3);
         final Exercise exercise = new ExerciseGenerator(seed, type, level).generateExercise();
@@ -131,15 +152,70 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
+
+        messageEditText = (EditText) findViewById(R.id.messageEditText);
+        sendMessageButton = (ImageButton) findViewById(R.id.sendMessageButton);
+
+        sendMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("clicked");
+                serverAPI.sendMessage(databaseAPI.getUsername(), messageEditText.getText().toString(), room.getId(), new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        return null;
+                    }
+                }, new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        return null;
+                    }
+                });
+            }
+        });
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                serverAPI.receiveMessages(lastRequestTime, room.getId(), new CallableWithParameter<List<ServerAPI.Message>, Void>() {
+                    @Override
+                    public Void call(List<ServerAPI.Message> parameter) {
+                        addMessages(parameter);
+                        return null;
+                    }
+                }, new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        return null;
+                    }
+                });
+                lastRequestTime = System.currentTimeMillis();
+            }
+        }, 10, 1000);
     }
 
     public void addMessages(List<ServerAPI.Message> messages) {
-//        for (ServerAPI.Message message : messages) {
-        for (int i = 0; i < 10; i++) {
-            View messageView = View.inflate(this, R.layout.chat_message, null);
-            messageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500));
-            messagesLinearLayout.addView(messageView, i);
+        for (final ServerAPI.Message message : messages) {
+            final View messageView = View.inflate(this, R.layout.chat_message, null);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    TextView messageTextView = (TextView) messageView.findViewById(R.id.messageTextView);
+                    TextView usernameTextView = (TextView) messageView.findViewById(R.id.usernameTextView);
+                    TextView timeTextView = (TextView) messageView.findViewById(R.id.timeTextView);
+
+
+                    messageTextView.setText(message.getMessage());
+                    usernameTextView.setText(message.getSenderUserName());
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                    timeTextView.setText(simpleDateFormat.format(new Date(message.getTimeSent())));
+
+                    messageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,500));
+                    messagesLinearLayout.addView(messageView);
+                }
+            });
+            }
         }
-//        }
-    }
 }
