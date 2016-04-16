@@ -522,7 +522,6 @@ int id end_padder 0x7f0c0081
 int id expand_activities_button 0x7f0c002d
 int id expanded 0x7f0c0027
 int id expanded_menu 0x7f0c0040
-int id formula_one 0x7f0c006d
 int id hidden 0x7f0c0028
 int id home 0x7f0c0004
 int id homeAsUp 0x7f0c000f
@@ -540,6 +539,7 @@ int id list_item 0x7f0c0030
 int id logOutTextButton 0x7f0c0060
 int id loginTextButton 0x7f0c005b
 int id loginTextView 0x7f0c0058
+int id mathView 0x7f0c006d
 int id media_actions 0x7f0c0078
 int id menuLinearLayout 0x7f0c0062
 int id middle 0x7f0c001d
