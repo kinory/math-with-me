@@ -61,6 +61,16 @@ ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManif
 		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:18:13-50
 	android:name
 		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:17:13-51
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:19:13-23:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:22:17-77
+	android:name
+		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:22:27-74
 activity#kkkk.mathwithme.activity.SignUpActivity
 ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:25:9-27:53
 	android:screenOrientation
@@ -79,16 +89,6 @@ ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManif
 		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:33:13-50
 	android:name
 		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:32:13-50
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:34:13-38:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:35:17-69
-	android:name
-		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:35:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:37:17-77
-	android:name
-		ADDED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml:37:27-74
 uses-sdk
 INJECTED from C:\Users\giladkinory\Desktop\svn\MathWithMe\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.1] C:\Users\giladkinory\Desktop\svn\MathWithMe\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\AndroidManifest.xml:21:5-23:78
