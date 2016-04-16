@@ -6,16 +6,16 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:id="@+id/editText"
+        android:id="@+id/messageEditText"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button" />
+        android:layout_toStartOf="@+id/sendMessageButton" />
 
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/button"
-        android:layout_alignBottom="@+id/editText"
+        android:id="@+id/sendMessageButton"
+        android:layout_alignBottom="@+id/messageEditText"
         android:layout_alignParentEnd="true"
         android:background="@drawable/circle_button"
         android:src="@drawable/social_send_now"
@@ -25,22 +25,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/editText">
+        android:layout_above="@+id/messageEditText">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_gravity="center" >
+            android:layout_gravity="center"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/messagesLinearLayout"
+                android:layout_gravity="center"/>
 
         </ScrollView>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/messagesLinearLayout"
-            android:layout_gravity="center"/>
     </FrameLayout>
 
 </RelativeLayout>

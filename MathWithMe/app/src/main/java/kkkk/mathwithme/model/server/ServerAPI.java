@@ -222,7 +222,7 @@ public class ServerAPI {
             protected Void doInBackground(Void... params) {
                 try {
                     RequestBody formBody = new FormBody.Builder()
-                            .add("message", message)
+                            .add("currentMessage", message)
                             .add("userSent", senderUsername)
                             .add("timeSent", String.valueOf(System.currentTimeMillis()))
                             .add("roomId", roomId)
@@ -232,6 +232,7 @@ public class ServerAPI {
                             .post(formBody)
                             .build();
                     okhttp3.Response response = client.newCall(request).execute();
+                     System.out.println(response.body().string());
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected Code: " + response);
                     } else {
@@ -458,10 +459,21 @@ public class ServerAPI {
         private String senderUserName;
 
         public Message(JSONObject messageJson) throws JSONException {
-            timeSent = Long.parseLong(messageJson.getString("timeSent"));
+            String timeSentString = messageJson.optString("timeSent");
+            if (timeSentString.equals("undefined") || timeSentString.equals(""))
+                timeSent = 0l;
+            else
+                timeSent = Long.parseLong(timeSentString);
             message = messageJson.getString("message");
             senderUserName = messageJson.getString("userSendingUsername");
             roomId = messageJson.getString("roomId");
+        }
+
+        public Message(String roomId, long timeSent, String message, String senderUserName) {
+            this.roomId = roomId;
+            this.timeSent = timeSent;
+            this.message = message;
+            this.senderUserName = senderUserName;
         }
 
         public long getTimeSent() {
