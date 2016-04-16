@@ -49,13 +49,15 @@ public class QuadraticEquation implements Exercise {
             a = B*C;
             b = B*D;
             c = 0;
+
+            solutions = new int[]{-D/C};
         } else {
             a = A*C;
             b = D*A + B*C;
             c = B * D;
-        }
 
-        solutions = new int[]{-B/A, -D/C};
+            solutions = new int[]{-B/A, -D/C};
+        }
     }
 
     private static int divisor(int num) {

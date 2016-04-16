@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import io.github.kexanie.library.MathView;
 import kkkk.mathwithme.R;
-import kkkk.mathwithme.model.ChatRoomAdapter;
 import kkkk.mathwithme.model.Exercise;
 import kkkk.mathwithme.model.ExerciseGenerator;
 import kkkk.mathwithme.model.LinearEquation;
@@ -50,6 +49,6 @@ public class RoomActivity extends AppCompatActivity {
                 exerciseText = String.format("%dx^2+%dx+%d = 0", params[0], params[1], params[2]);
             }
         }
-        mathView.setText(exerciseText);
+        mathView.setText(String.format("$$%s$$", exerciseText));
     }
 }
