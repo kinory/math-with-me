@@ -17,11 +17,9 @@
 
 
         <io.github.kexanie.library.MathView
-            android:id="@+id/formula_one"
+            android:id="@+id/mathView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            auto:text="When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\)
-        and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
             auto:engine="MathJax"
             >
         </io.github.kexanie.library.MathView>

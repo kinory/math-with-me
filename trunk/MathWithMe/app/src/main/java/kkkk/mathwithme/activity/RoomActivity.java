@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.widget.TextView;
 
+import io.github.kexanie.library.MathView;
 import kkkk.mathwithme.R;
 import kkkk.mathwithme.model.Exercise;
 import kkkk.mathwithme.model.ExerciseGenerator;
@@ -20,6 +21,7 @@ public class RoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+        MathView mathView = (MathView) findViewById(R.id.mathView);
         exerciseTextView = new TextView(this);
         ServerAPI.Room room = (ServerAPI.Room) getIntent().getSerializableExtra("room");
         int type = room.getLevel() % 2 + 1;
@@ -28,16 +30,22 @@ public class RoomActivity extends AppCompatActivity {
         int[] params = exercise.getParameters();
         String exerciseText = null;
         if (exercise.getType() == LinearEquation.class) {
-            if (params[0] == 0 && params[3] == 0 && params[1]==0) {
-
+            if (params[3] == 0 && params[5] == 0) {
+                exerciseText = String.format("%d(%dx+%d) = %d", params[0], params[1], params[2], params[8]);
+            } else if(params[3] == 0) {
+                exerciseText = String.format("%d(%dx+%d) = %d(%dx+%d)+%d", params[0], params[1], params[2], params[5], params[6], params[7], params[8]);
+            } else if (params[5] == 0) {
+                exerciseText = String.format("%d(%dx+%d)+%d(%dx+%d) = %d", params[0], params[1], params[2], params[3], params[4], params[5], params[8]);
+            } else {
+                exerciseText = String.format("%d(%dx+%d) = %d", params[0], params[1], params[2], params[8]);
             }
         } else if (exercise.getType() == QuadraticEquation.class) {
             if (params[2] == 0) {
-                String format = String.format("%d*x^2+%d*x", params[0], params[1]);
+                exerciseText = String.format("%dx^2+%dx = 0", params[0], params[1]);
             } else {
-                String format = String.format("%d*x^2+%d*x+%d", params[0], params[1], params[2]);
+                exerciseText = String.format("%dx^2+%dx+%d = 0", params[0], params[1], params[2]);
             }
         }
-        exerciseTextView.setText(Html.fromHtml(exerciseText));
+        mathView.setText(exerciseText);
     }
 }
