@@ -55,13 +55,13 @@ public class MenuActivity extends AppCompatActivity {
             });
         }
 
-        welcomeTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+//        welcomeTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         logOutTextButton = (TextView) findViewById(R.id.logOutTextButton);
         logOutTextButton.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,6 @@ package kkkk.mathwithme.model.server;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -14,8 +13,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -131,6 +130,7 @@ public class ServerAPI {
                     }
                 } catch (IOException|JSONException e) {
                     try {
+                        e.printStackTrace();
                         actionIfFail.call();
                     } catch (Exception e1) {
                         e1.printStackTrace();
@@ -260,9 +260,9 @@ public class ServerAPI {
         }.execute();
     }
 
-    public void receiveMessage(final String lastRequestTime, final String userId,
-                               final CallableWithParameter<List<Message>, Void> actionWhenDone,
-                               final Callable<Void> actionIfFail){
+    public void receiveMessages(final String lastRequestTime, final String userId,
+                                final CallableWithParameter<List<Message>, Void> actionWhenDone,
+                                final Callable<Void> actionIfFail){
         new AsyncTask<Void, Void, Void>() {
             OkHttpClient client = new OkHttpClient();
             @Override
