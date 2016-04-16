@@ -47,13 +47,18 @@ public class ProfileActivity extends Activity {
 
         serverAPI.getUserById(databaseAPI.getId(), new CallableWithParameter<ServerAPI.UserWithoutRoom, Void>() {
             @Override
-            public Void call(ServerAPI.UserWithoutRoom parameter) {
-                usernameTextView.setText("Username: " + parameter.getUsername());
-                emailTextView.setText("Email: " + parameter.getEmail());
-                pointsTextView.setText("Points: " + parameter.getPoints());
+            public Void call(final ServerAPI.UserWithoutRoom parameter) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        usernameTextView.setText("Username: " + parameter.getUsername());
+                        emailTextView.setText("Email: " + parameter.getEmail());
+                        pointsTextView.setText("Points: " + parameter.getPoints());
 
-                mainLinearLayout.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+                        mainLinearLayout.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
 
                 return null;
             }

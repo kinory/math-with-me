@@ -89,7 +89,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:id="@+id/editText"
+                    android:id="@+id/chatEditText"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/button" />
@@ -97,7 +97,7 @@
                 <ImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/button"
+                    android:id="@+id/sendMessageButton"
                     android:layout_alignBottom="@+id/editText"
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/circle_button"

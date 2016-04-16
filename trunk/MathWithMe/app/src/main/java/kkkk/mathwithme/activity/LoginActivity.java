@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
 
         id = databaseAPI.getId();
 
-        if (id != null) {
+        if (id != null && !id.equals("undefined_id")) {
             finish();
             Intent intent = new Intent(this, MenuActivity.class);
             startActivity(intent);

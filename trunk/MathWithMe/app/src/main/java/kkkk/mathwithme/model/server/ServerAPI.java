@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -46,11 +47,11 @@ public class ServerAPI {
     public void signUp(final String username, final String password, final String email,
                        final CallableWithParameter<String, Void> actionWhenDone,
                        final Callable<Void> actionIfFail) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signup",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/adduser",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        actionWhenDone.call(response);
+                        signIn(username, password, actionWhenDone, actionIfFail);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -79,11 +80,29 @@ public class ServerAPI {
     public void signIn(final String username, final String password,
                        final CallableWithParameter<String, Void> actionWhenDone,
                        final Callable<Void> actionIfFail) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/signin",
-                new Response.Listener<String>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST,
+                SERVER_URL + "/getusers", null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(String response) {
-                        actionWhenDone.call(response);
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                if (jsonObject.getString("username").equals(username)
+                                        && jsonObject.getString("password").equals(password)) {
+                                    actionWhenDone.call(jsonObject.getString("_id"));
+                                    return;
+                                }
+                            }
+                            try {
+                                actionIfFail.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -103,23 +122,22 @@ public class ServerAPI {
                 return mParams;
             }
         };
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void getUserById(final String id,
                             final CallableWithParameter<UserWithoutRoom, Void> actionWhenDone,
                             final Callable<Void> actionIfFail) {
-        new AsyncTask<Void, Void,Void>() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void[] params) {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 try {
                     RequestBody formBody = new FormBody.Builder()
-                            .add("userId", id)
                             .build();
 
                     okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(SERVER_URL+"/getuserbyid")
+                            .url(SERVER_URL + "/getusers")
                             .post(formBody)
                             .build();
 
@@ -127,9 +145,15 @@ public class ServerAPI {
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected Code: " + response);
                     } else {
-                        actionWhenDone.call(new UserWithoutRoom(new JSONObject(response.body().string())));
+                        JSONArray users = new JSONArray(response.body().string());
+                        for (int i = 0; i < users.length(); i++) {
+                            UserWithoutRoom user = new UserWithoutRoom(new JSONObject(users.getString(i)));
+                            if (user.getId().equals(id))
+                                actionWhenDone.call(user);
+                        }
+
                     }
-                } catch (IOException|JSONException e) {
+                } catch (IOException | JSONException e) {
                     try {
                         e.printStackTrace();
                         actionIfFail.call();
@@ -188,21 +212,23 @@ public class ServerAPI {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void sendMessage(final String senderId, final String message,
+    public void sendMessage(final String senderUsername, final String message, final String roomId,
                             final Callable<Void> actionWhenDone,
                             final Callable<Void> actionIfFail) {
         new AsyncTask<Void, Void, Void>() {
             OkHttpClient client = new OkHttpClient();
+
             @Override
             protected Void doInBackground(Void... params) {
                 try {
                     RequestBody formBody = new FormBody.Builder()
                             .add("message", message)
-                            .add("userId", senderId)
+                            .add("userSent", senderUsername)
                             .add("timeSent", String.valueOf(System.currentTimeMillis()))
+                            .add("roomId", roomId)
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(SERVER_URL+"/sendmessage")
+                            .url(SERVER_URL + "/addmessage")
                             .post(formBody)
                             .build();
                     okhttp3.Response response = client.newCall(request).execute();
@@ -228,6 +254,7 @@ public class ServerAPI {
                         final Callable<Void> actionIfFail) {
         new AsyncTask<Void, Void, Void>() {
             OkHttpClient client = new OkHttpClient();
+
             @Override
             protected Void doInBackground(Void... params) {
                 try {
@@ -261,20 +288,19 @@ public class ServerAPI {
         }.execute();
     }
 
-    public void receiveMessages(final String lastRequestTime, final String userId,
+    public void receiveMessages(final long lastRequestTime, final String roomId,
                                 final CallableWithParameter<List<Message>, Void> actionWhenDone,
-                                final Callable<Void> actionIfFail){
+                                final Callable<Void> actionIfFail) {
         new AsyncTask<Void, Void, Void>() {
             OkHttpClient client = new OkHttpClient();
+
             @Override
             protected Void doInBackground(Void... params) {
                 try {
                     RequestBody formBody = new FormBody.Builder()
-                            .add("lastRequestTime", lastRequestTime)
-                            .add("user", userId)
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(SERVER_URL)
+                            .url(SERVER_URL + "/getmessages")
                             .post(formBody)
                             .build();
                     okhttp3.Response response = client.newCall(request).execute();
@@ -286,14 +312,17 @@ public class ServerAPI {
                         try {
                             for (int i = 0; i < jsonResponse.length(); i++) {
                                 JSONObject messageJson = jsonResponse.getJSONObject(i);
-                                    messageObjectList.add(new Message(messageJson));
+                                Message m = new Message(messageJson);
+                                if (m.timeSent > lastRequestTime && m.getRoomId().equals(roomId)) {
+                                    messageObjectList.add(m);
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         actionWhenDone.call(messageObjectList);
                     }
-                } catch (IOException|JSONException e) {
+                } catch (IOException | JSONException e) {
                     try {
                         actionIfFail.call();
                     } catch (Exception e1) {
@@ -306,10 +335,11 @@ public class ServerAPI {
     }
 
     public void joinRoom(final String userId, final String roomId,
-                            final Callable<Void> actionWhenDone,
-                            final Callable<Void> actionIfFail) {
+                         final Callable<Void> actionWhenDone,
+                         final Callable<Void> actionIfFail) {
         new AsyncTask<Void, Void, Void>() {
             OkHttpClient client = new OkHttpClient();
+
             @Override
             protected Void doInBackground(Void... params) {
                 try {
@@ -318,7 +348,7 @@ public class ServerAPI {
                             .add("roomId", roomId)
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
-                            .url(SERVER_URL+"/joinroom")
+                            .url(SERVER_URL + "/joinroom")
                             .post(formBody)
                             .build();
                     okhttp3.Response response = client.newCall(request).execute();
@@ -389,7 +419,6 @@ public class ServerAPI {
         private String userName;
         private String email;
         private int points;
-        private String username;
 
         private UserWithoutRoom(String id, String userName, String email, int points) {
             this.id = id;
@@ -414,7 +443,7 @@ public class ServerAPI {
         }
 
         public String getUsername() {
-            return username;
+            return userName;
         }
 
         public String getEmail() {
@@ -423,6 +452,7 @@ public class ServerAPI {
     }
 
     public static class Message {
+        private String roomId;
         private long timeSent;
         private String message;
         private String senderUserName;
@@ -430,7 +460,8 @@ public class ServerAPI {
         public Message(JSONObject messageJson) throws JSONException {
             timeSent = Long.parseLong(messageJson.getString("timeSent"));
             message = messageJson.getString("message");
-            senderUserName  = messageJson.getString("userSendingUsername");
+            senderUserName = messageJson.getString("userSendingUsername");
+            roomId = messageJson.getString("roomId");
         }
 
         public long getTimeSent() {
@@ -443,6 +474,10 @@ public class ServerAPI {
 
         public String getSenderUserName() {
             return senderUserName;
+        }
+
+        public String getRoomId() {
+            return roomId;
         }
     }
 }
