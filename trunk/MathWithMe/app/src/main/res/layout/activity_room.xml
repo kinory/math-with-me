@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:gravity="bottom"
         sothree:umanoPanelHeight="68dp"
-        sothree:umanoShadowHeight="4dp">
+        sothree:umanoShadowHeight="4dp"
+        android:layoutDirection="ltr">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,17 +25,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 auto:engine="MathJax"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/textView7">
+                android:layout_centerHorizontal="true">
             </io.github.kexanie.library.MathView>
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_above="@+id/checkButton"
+                android:layout_alignParentStart="true">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/answerTextField1"
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Solution 1"
+                    android:textColor="@color/colorForegroundDark"
+                    android:layout_above="@+id/checkButton"
+                    android:layout_alignEnd="@+id/linearLayout"
+                    android:layout_alignStart="@+id/linearLayout" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/answerTextField2"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorForegroundDark"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Solution 2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"/>
+            </LinearLayout>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView7"
+                android:text="check"
+                android:id="@+id/checkButton"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_centerHorizontal="true" />
+
+
         </RelativeLayout>
         <FrameLayout
             android:layout_width="match_parent"
@@ -88,6 +129,7 @@
                 </FrameLayout>
 
             </RelativeLayout>
+
         </FrameLayout>
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
