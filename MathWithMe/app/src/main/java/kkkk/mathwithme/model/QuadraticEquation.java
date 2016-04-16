@@ -50,7 +50,7 @@ public class QuadraticEquation implements Exercise {
             b = B*D;
             c = 0;
 
-            solutions = new int[]{-D/C};
+            solutions = new int[]{0, -D/C};
         } else {
             a = A*C;
             b = D*A + B*C;
