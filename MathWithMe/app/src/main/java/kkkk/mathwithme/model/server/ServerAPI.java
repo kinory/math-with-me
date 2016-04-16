@@ -1,6 +1,7 @@
 package kkkk.mathwithme.model.server;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -16,12 +17,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 
 /**
  * Created by Gilad Kinory on 15/04/2016.
@@ -103,38 +109,37 @@ public class ServerAPI {
     public void getUserById(final String id,
                             final CallableWithParameter<UserWithoutRoom, Void> actionWhenDone,
                             final Callable<Void> actionIfFail) {
-        Log.e(TAG, "getUserById: start");
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                SERVER_URL + "/getuserbyid", null, new Response.Listener<JSONObject>() {
+        new AsyncTask<Void, Void,Void>() {
             @Override
-            public void onResponse(JSONObject response) {
+            protected Void doInBackground(Void[] params) {
+                OkHttpClient okHttpClient = new OkHttpClient();
                 try {
-                    Log.e(TAG, "onResponse: response");
-                    UserWithoutRoom user = new UserWithoutRoom(response);
-                    actionWhenDone.call(user);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    RequestBody formBody = new FormBody.Builder()
+                            .add("userId", id)
+                            .build();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .url(SERVER_URL+"/getuserbyid")
+                            .post(formBody)
+                            .build();
+
+                    okhttp3.Response response = okHttpClient.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected Code: " + response);
+                    } else {
+                        actionWhenDone.call(new UserWithoutRoom(new JSONObject(response.body().string())));
+                    }
+                } catch (IOException|JSONException e) {
+                    try {
+                        actionIfFail.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
+                return null;
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-                    Log.e(TAG, "onResponse: response e");
-                    actionIfFail.call();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> mParams = super.getParams();
-                mParams.put("userId", id);
-                return mParams;
-            }
-        };
-        requestQueue.add(jsonObjectRequest);
+        }.execute();
+
     }
 
     public void getAllRooms(final CallableWithParameter<List<Room>, Void> actionWhenDone,
@@ -185,39 +190,38 @@ public class ServerAPI {
     public void sendMessage(final String senderId, final String message,
                             final Callable<Void> actionWhenDone,
                             final Callable<Void> actionIfFail) {
-        Log.e(TAG, "sendMessage: Start");
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, SERVER_URL + "/sendmessage",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            Log.e(TAG, "sendMessage: Fin");
-                            actionWhenDone.call();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        new AsyncTask<Void, Void, Void>() {
+            OkHttpClient client = new OkHttpClient();
             @Override
-            public void onErrorResponse(VolleyError error) {
+            protected Void doInBackground(Void... params) {
                 try {
-                    actionIfFail.call();
+                    RequestBody formBody = new FormBody.Builder()
+                            .add("message", message)
+                            .add("userId", senderId)
+                            .add("timeSent", String.valueOf(System.currentTimeMillis()))
+                            .build();
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .url(SERVER_URL+"/sendmessage")
+                            .post(formBody)
+                            .build();
+                    okhttp3.Response response = client.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected Code: " + response);
+                    } else {
+                        actionWhenDone.call();
+                    }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        actionIfFail.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
+                return null;
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> mParams = new HashMap<>();
-                mParams.put("userId", senderId);
-                mParams.put("timeSent", String.valueOf(System.currentTimeMillis()));
-                mParams.put("message", message);
-                return mParams;
-            }
-        };
-        requestQueue.add(stringRequest);
+        }.execute();
     }
+
 
     public static class Room {
         private int level;

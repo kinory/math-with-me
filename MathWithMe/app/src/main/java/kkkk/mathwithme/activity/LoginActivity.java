@@ -51,8 +51,8 @@ public class LoginActivity extends Activity {
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
-        //Delete
-        ServerAPI serverAPI = new ServerAPI(this);
+//Delete
+        ServerAPI serverAPI = new ServerAPI(LoginActivity.this);
         serverAPI.sendMessage("571146ab344664d6004310d2", "Hi", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -84,10 +84,10 @@ public class LoginActivity extends Activity {
         loginTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ServerAPI serverAPI = new ServerAPI(LoginActivity.this);
+                ServerAPI mServerAPI = new ServerAPI(LoginActivity.this);
                 progressBar.setVisibility(View.VISIBLE);
                 final String username = usernameEditText.getText().toString();
-                serverAPI.signIn(username,
+                mServerAPI.signIn(username,
                         passwordEditText.getText().toString(),
                         new CallableWithParameter<String, Void>() {
                             @Override
