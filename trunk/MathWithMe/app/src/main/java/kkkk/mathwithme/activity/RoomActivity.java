@@ -34,12 +34,17 @@ public class RoomActivity extends AppCompatActivity {
         int levelInt = getIntent().getIntExtra("level", 1);
         int type = (int) Math.ceil(levelInt / 3.0);
         int level = (levelInt % 3) == 0 ? 3 : (levelInt % 3);
-        Log.d("<Kinory>", "type: " + type + ", level: " + level + ", num: " + levelInt);
+        Log.d("<Kinory>", "num: " + levelInt + ", type: " + type + ", level: " + level);
         Exercise exercise = new ExerciseGenerator(seed, type, level).generateExercise();
         int[] params = exercise.getParameters();
         String exerciseText = null;
         if (exercise.getType() == LinearEquation.class) {
             if (params[3] == 0 && params[5] == 0) {
+                if (params[0] == 1 && params[1] == 1) {
+                    exerciseText = String.format("(x+%d) = %d", params[2], params[8]);
+                } else if (params[0] == 1) {
+                    exerciseText = String.format("%d(%dx+%d) = %d", params[0], params[1], params[2], params[8]);
+                }
                 exerciseText = String.format("%d(%dx+%d) = %d", params[0], params[1], params[2], params[8]);
             } else if(params[3] == 0) {
                 exerciseText = String.format("%d(%dx+%d) = %d(%dx+%d)+%d", params[0], params[1], params[2], params[5], params[6], params[7], params[8]);
