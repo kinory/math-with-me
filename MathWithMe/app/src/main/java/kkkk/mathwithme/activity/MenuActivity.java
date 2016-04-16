@@ -20,7 +20,6 @@ public class MenuActivity extends AppCompatActivity {
     private static final int NUMBER_OF_CATEGORIES = 2;
 
     private ArrayList<FrameLayout> categories = new ArrayList<>();
-    private TextView profileTextButton;
     private TextView logOutTextButton;
 
     @Override
@@ -32,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
         final LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
 
         TextView welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
-        welcomeTextView.setText("Welcome " + databaseAPI.getUsername() + "!");
+        welcomeTextView.setText(databaseAPI.getUsername());
 
         LinearLayout menuLinearLayout = (LinearLayout) findViewById(R.id.menuLinearLayout);
 
@@ -56,8 +55,7 @@ public class MenuActivity extends AppCompatActivity {
             });
         }
 
-        profileTextButton = (TextView) findViewById(R.id.profileTextButton);
-        profileTextButton.setOnClickListener(new View.OnClickListener() {
+        welcomeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
