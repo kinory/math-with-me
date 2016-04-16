@@ -222,6 +222,121 @@ public class ServerAPI {
         }.execute();
     }
 
+    public void addRoom(final int level, final int seed,
+                        final Callable<Void> actionWhenDone,
+                        final Callable<Void> actionIfFail) {
+        new AsyncTask<Void, Void, Void>() {
+            OkHttpClient client = new OkHttpClient();
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    okhttp3.RequestBody formBody = new okhttp3.FormBody.Builder()
+                            .add("level", String.valueOf(level))
+                            .add("seed", String.valueOf(level))
+                            .build();
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .url(SERVER_URL)
+                            .post(formBody)
+                            .build();
+                    okhttp3.Response response = client.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected Code: " + response);
+                    } else {
+                        try {
+                            actionWhenDone.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (IOException e) {
+                    try {
+                        actionIfFail.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        }.execute();
+    }
+
+    public void receiveMessage(final String lastRequestTime, final String userId,
+                               final CallableWithParameter<List<Message>, Void> actionWhenDone,
+                               final Callable<Void> actionIfFail){
+        new AsyncTask<Void, Void, Void>() {
+            OkHttpClient client = new OkHttpClient();
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    RequestBody formBody = new FormBody.Builder()
+                            .add("lastRequestTime", lastRequestTime)
+                            .add("user", userId)
+                            .build();
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .url(SERVER_URL)
+                            .post(formBody)
+                            .build();
+                    okhttp3.Response response = client.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected Code: " + response);
+                    } else {
+                        List<Message> messageObjectList = new ArrayList<>();
+                        JSONArray jsonResponse = new JSONArray(response.body().string());
+                        try {
+                            for (int i = 0; i < jsonResponse.length(); i++) {
+                                JSONObject messageJson = jsonResponse.getJSONObject(i);
+                                    messageObjectList.add(new Message(messageJson));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        actionWhenDone.call(messageObjectList);
+                    }
+                } catch (IOException|JSONException e) {
+                    try {
+                        actionIfFail.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        }.execute();
+    }
+
+    public void joinRoom(final String userId, final String roomId,
+                            final Callable<Void> actionWhenDone,
+                            final Callable<Void> actionIfFail) {
+        new AsyncTask<Void, Void, Void>() {
+            OkHttpClient client = new OkHttpClient();
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    RequestBody formBody = new FormBody.Builder()
+                            .add("userId", userId)
+                            .add("roomId", roomId)
+                            .build();
+                    okhttp3.Request request = new okhttp3.Request.Builder()
+                            .url(SERVER_URL+"/joinroom")
+                            .post(formBody)
+                            .build();
+                    okhttp3.Response response = client.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected Code: " + response);
+                    } else {
+                        actionWhenDone.call();
+                    }
+                } catch (Exception e) {
+                    try {
+                        actionIfFail.call();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        }.execute();
+    }
 
     public static class Room {
         private int level;
@@ -302,6 +417,30 @@ public class ServerAPI {
 
         public String getEmail() {
             return email;
+        }
+    }
+
+    public static class Message {
+        private long timeSent;
+        private String message;
+        private String senderUserName;
+
+        public Message(JSONObject messageJson) throws JSONException {
+            timeSent = Long.parseLong(messageJson.getString("timeSent"));
+            message = messageJson.getString("message");
+            senderUserName  = messageJson.getString("userSendingUsername");
+        }
+
+        public long getTimeSent() {
+            return timeSent;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public String getSenderUserName() {
+            return senderUserName;
         }
     }
 }
