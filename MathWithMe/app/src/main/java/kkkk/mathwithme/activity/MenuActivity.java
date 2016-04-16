@@ -11,9 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 import kkkk.mathwithme.R;
 import kkkk.mathwithme.model.LocalDatabaseAPI;
+import kkkk.mathwithme.model.server.CallableWithParameter;
 import kkkk.mathwithme.model.server.ServerAPI;
 
 public class MenuActivity extends AppCompatActivity {
@@ -51,9 +54,23 @@ public class MenuActivity extends AppCompatActivity {
                     builder.setTitle(R.string.choose_difficulty_text).setItems(new String[]{"Easy", "Medium", "Hard"},
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    goToRoom(new ServerAPI.Room(difficulties[which] + (finalI)*3, "",
-                                            finalI, true));
+                                public void onClick(DialogInterface dialog, final int which) {
+                                    ServerAPI serverAPI = new ServerAPI(MenuActivity.this);
+                                    serverAPI.getAllRooms(new CallableWithParameter<List<ServerAPI.Room>, Void>() {
+                                        @Override
+                                        public Void call(List<ServerAPI.Room> parameter) {
+                                            for (ServerAPI.Room r: parameter) {
+                                                if (r.getLevel() == difficulties[which] + finalI*3)
+                                                    goToRoom(r);
+                                            }
+                                            return null;
+                                        }
+                                    }, new Callable<Void>() {
+                                        @Override
+                                        public Void call() throws Exception {
+                                            return null;
+                                        }
+                                    });
                                 }
                             }).setNegativeButton("Cancel", null);
                     builder.show();
@@ -86,8 +103,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void goToRoom(ServerAPI.Room room) {
         Intent intent = new Intent(this, RoomActivity.class);
-        intent.putExtra("level", room.getLevel());
-        intent.putExtra("seed", room.getSeed());
+        intent.putExtra("room", room);
         startActivity(intent);
     }
 }
