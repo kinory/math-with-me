@@ -74,6 +74,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        welcomeTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void goToRoom(ServerAPI.Room room) {
