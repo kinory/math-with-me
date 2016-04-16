@@ -2,6 +2,7 @@ package kkkk.mathwithme.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -31,8 +32,9 @@ public class RoomActivity extends AppCompatActivity {
         MathView mathView = (MathView) findViewById(R.id.mathView);
         int seed = getIntent().getIntExtra("seed", 0);
         int levelInt = getIntent().getIntExtra("level", 1);
-        int type = levelInt % 2 + 1;
-        int level = levelInt / 3 + 1;
+        int type = (int) Math.ceil(levelInt / 3.0);
+        int level = (levelInt % 3) == 0 ? 3 : (levelInt % 3);
+        Log.d("<Kinory>", "type: " + type + ", level: " + level + ", num: " + levelInt);
         Exercise exercise = new ExerciseGenerator(seed, type, level).generateExercise();
         int[] params = exercise.getParameters();
         String exerciseText = null;
