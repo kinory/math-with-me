@@ -2,11 +2,12 @@ package kkkk.mathwithme.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import io.github.kexanie.library.MathView;
 import kkkk.mathwithme.R;
+import kkkk.mathwithme.model.ChatRoomAdapter;
 import kkkk.mathwithme.model.Exercise;
 import kkkk.mathwithme.model.ExerciseGenerator;
 import kkkk.mathwithme.model.LinearEquation;
@@ -21,6 +22,9 @@ public class RoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(new ChatRoomAdapter(this));
+
         MathView mathView = (MathView) findViewById(R.id.mathView);
         exerciseTextView = new TextView(this);
         ServerAPI.Room room = (ServerAPI.Room) getIntent().getSerializableExtra("room");
