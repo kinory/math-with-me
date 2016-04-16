@@ -16,15 +16,6 @@
         sothree:umanoShadowHeight="4dp">
 
 
-        <io.github.kexanie.library.MathView
-            android:id="@+id/mathView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            auto:engine="MathJax"
-            >
-        </io.github.kexanie.library.MathView>
-        
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -56,6 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
                     android:layout_above="@+id/editText">
 
                     <ScrollView
@@ -78,6 +70,28 @@
             </RelativeLayout>
         </FrameLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sliding_layout">
+        <io.github.kexanie.library.MathView
+            android:id="@+id/mathView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            auto:engine="MathJax"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/textView7">
+        </io.github.kexanie.library.MathView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
 
