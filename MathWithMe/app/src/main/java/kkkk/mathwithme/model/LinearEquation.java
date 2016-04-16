@@ -28,29 +28,29 @@ public class LinearEquation implements Exercise {
     protected LinearEquation(int level) {
         parametersGenerator = new Random();
 
-        a = sign() * parametersGenerator.nextInt(31);
-        b = sign() * parametersGenerator.nextInt(31);
-        c = sign() * parametersGenerator.nextInt(31);
+        a = sign() * (parametersGenerator.nextInt(31)+1);
+        b = sign() * (parametersGenerator.nextInt(31)+1);
+        c = sign() * (parametersGenerator.nextInt(31)+1);
         switch (level) {
             case 1:
                 d = 0;
                 e = 0;
                 break;
             case 2:
-                d = sign() * parametersGenerator.nextInt(31);
+                d = sign() * (parametersGenerator.nextInt(31)+1);
                 e = 0;
                 break;
             case 3:
-                d = sign() * parametersGenerator.nextInt(31);
-                e = sign() * parametersGenerator.nextInt(31);
+                d = sign() * (parametersGenerator.nextInt(31)+1);
+                e = sign() * (parametersGenerator.nextInt(31)+1);
                 break;
         }
-        f = sign() * parametersGenerator.nextInt(31);
+        f = sign() * (parametersGenerator.nextInt(31)+1);
         while (a * b + d - e * f == 0) {
-            f = sign() * parametersGenerator.nextInt(31);
+            f = sign() * (parametersGenerator.nextInt(31)+1);
         }
-        g = sign() * parametersGenerator.nextInt(31);
-        i = sign() * parametersGenerator.nextInt(31);
+        g = sign() * (parametersGenerator.nextInt(31)+1);
+        i = sign() * (parametersGenerator.nextInt(31)+1);
 
         h = -(parametersGenerator.nextInt(4) * (a * b + d - e * f) + (e * g - a * c - d * i) % (a * b + d - e * f));
 
