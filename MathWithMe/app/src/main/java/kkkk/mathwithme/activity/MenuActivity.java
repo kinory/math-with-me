@@ -11,9 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Callable;
 
 import kkkk.mathwithme.R;
 import kkkk.mathwithme.model.LocalDatabaseAPI;
+import kkkk.mathwithme.model.server.CallableWithParameter;
+import kkkk.mathwithme.model.server.ServerAPI;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -21,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private ArrayList<FrameLayout> categories = new ArrayList<>();
     private TextView logOutTextButton;
+    LocalDatabaseAPI databaseAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,7 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         setContentView(R.layout.activity_menu);
 
-        final LocalDatabaseAPI databaseAPI = new LocalDatabaseAPI(this);
+        databaseAPI = new LocalDatabaseAPI(this);
 
         TextView welcomeTextView = (TextView) findViewById(R.id.welcomeTextView);
         welcomeTextView.setText(databaseAPI.getUsername());
@@ -38,30 +44,28 @@ public class MenuActivity extends AppCompatActivity {
         for (int i = 0; i < NUMBER_OF_CATEGORIES; i++)
             categories.add((FrameLayout) menuLinearLayout.getChildAt(i));
 
-        for (FrameLayout category : categories) {
+        for (int i = 0; i < categories.size(); i++) {
+            FrameLayout category = categories.get(i);
+            final int finalI = i;
             category.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
+                    final int[] difficulties = new int[]{1, 2, 3};
                     builder.setTitle(R.string.choose_difficulty_text).setItems(new String[]{"Easy", "Medium", "Hard"},
                             new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do something
-                        }
-                    }).setNegativeButton("Cancel", null);
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    goToRoom(new ServerAPI.Room(difficulties[which] + (finalI - 1)*3, "",
+                                            finalI, true));
+                                }
+                            }).setNegativeButton("Cancel", null);
                     builder.show();
                 }
             });
         }
 
-//        welcomeTextView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         logOutTextButton = (TextView) findViewById(R.id.logOutTextButton);
         logOutTextButton.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +78,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void goToRoom(ServerAPI.Room room) {
+        Intent intent = new Intent(this, RoomActivity.class);
+        intent.putExtra("level", room.getLevel());
+        intent.putExtra("seed", room.getSeed());
+        startActivity(intent);
     }
 }

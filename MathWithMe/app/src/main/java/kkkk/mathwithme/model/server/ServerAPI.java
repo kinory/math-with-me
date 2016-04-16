@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -328,6 +329,7 @@ public class ServerAPI {
                     }
                 } catch (Exception e) {
                     try {
+                        e.printStackTrace();
                         actionIfFail.call();
                     } catch (Exception e1) {
                         e1.printStackTrace();
@@ -338,13 +340,13 @@ public class ServerAPI {
         }.execute();
     }
 
-    public static class Room {
+    public static class Room implements Serializable {
         private int level;
         private String id;
         private int seed;
         private boolean roomStarted;
 
-        private Room(int level, String id, int seed, boolean roomStarted) {
+        public Room(int level, String id, int seed, boolean roomStarted) {
             this.level = level;
             this.id = id;
             this.seed = seed;
